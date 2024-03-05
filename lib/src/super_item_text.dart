@@ -91,9 +91,9 @@ class SuperItemText extends StatelessWidget {
     this.padding,
     this.custom,
     this.enable = true,
-     this.itemType = ItemTextType.none,
-     this.itemHitType = ItemHitType.none,
-     this.itemIconType= ItemIconType.right,
+    this.itemType = ItemTextType.none,
+    this.itemHitType = ItemHitType.none,
+    this.itemIconType = ItemIconType.right,
   });
 
   @override
