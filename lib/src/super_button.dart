@@ -31,6 +31,7 @@ class SuperButton extends StatelessWidget {
   final double? height;
 
   /// 自定义左侧Widget
+  final double widgetMarginHorizontal;
   final Widget? prefixWidget;
   final Widget? suffixWidget;
 
@@ -82,6 +83,7 @@ class SuperButton extends StatelessWidget {
     this.textStyle,
     this.width,
     this.height,
+    this.widgetMarginHorizontal = 4,
     this.prefixWidget,
     this.suffixWidget,
     this.backgroundColor,
@@ -153,7 +155,9 @@ class SuperButton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               if (prefixWidget != null) prefixWidget!,
+              if (prefixWidget != null) SizedBox(width: widgetMarginHorizontal),
               Text(text ?? "", overflow: TextOverflow.ellipsis, maxLines: 1, style: _getTextStyle(textColor), textAlign: TextAlign.center),
+              if (suffixWidget != null) SizedBox(width: widgetMarginHorizontal),
               if (suffixWidget != null) suffixWidget!,
             ],
           ),
