@@ -33,6 +33,9 @@ class SuperItemText extends StatelessWidget {
   /// 文本对齐方向
   final TextAlign? textAlign;
 
+  /// 行数
+  final int maxLines;
+
   /// 提示文本
   final String? hintText;
 
@@ -81,6 +84,7 @@ class SuperItemText extends StatelessWidget {
     this.textColor,
     this.textSize,
     this.textAlign = TextAlign.right,
+    this.maxLines = 1,
     this.hintText,
     this.backgroundColor,
     this.borderRadius,
@@ -139,7 +143,7 @@ class SuperItemText extends StatelessWidget {
                   text: (text != null && text != '') ? text! : hintTextStr,
                   color: (enable && (text != null && text!.isNotEmpty)) ? (textColor ?? const Color(0xFF666666)) : const Color(0xFF999999),
                   fontSize: 15,
-                  maxLines: 1,
+                  maxLines: maxLines,
                   overflow: TextOverflow.ellipsis,
                   textAlign: textAlign,
                 ),
