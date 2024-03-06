@@ -190,7 +190,7 @@ class SuperTextFiled extends StatefulWidget {
     this.suffixIconConstraints,
     this.suffixText,
     this.suffixStyle,
-    this.suffixPaddingEnd = 8,
+    this.suffixPaddingEnd = 4,
   });
 
   @override
@@ -361,7 +361,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
               ),
             ),
             widget.suffixIcon ?? const SizedBox.shrink(),
-            if (widget.suffixIcon != null) SizedBox(width: widget.suffixPaddingEnd),
+            if (widget.suffixIcon != null || ( _isClear && !widget.readOnly)) SizedBox(width: widget.suffixPaddingEnd),
           ],
         ),
         suffixIconConstraints: widget.suffixIconConstraints ?? const BoxConstraints(),
