@@ -37,6 +37,10 @@ class SuperCard extends StatelessWidget {
   final double paddingHorizontal;
   final double paddingVertical;
 
+  /// 装饰器，用于设置背景或图片
+  /// eg：DecorationImage(image: AssetImage("assets/images/bg_revoke.png"), alignment: Alignment(0.9, -0.9), scale: 3)
+  final DecorationImage? image;
+
   /// 局部阴影
   final List<BoxShadow>? boxShadow;
 
@@ -58,6 +62,7 @@ class SuperCard extends StatelessWidget {
     this.paddingHorizontal = 6,
     this.paddingVertical = 8,
     this.padding,
+    this.image,
     this.boxShadow,
   });
 
@@ -68,6 +73,7 @@ class SuperCard extends StatelessWidget {
       height: height,
       alignment: alignment,
       decoration: BoxDecoration(
+        image: image,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(topRadius ?? topLeftRadius ?? radius),
           topRight: Radius.circular(topRadius ?? topRightRadius ?? radius),
