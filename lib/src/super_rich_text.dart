@@ -34,6 +34,21 @@ class SuperRichText extends StatelessWidget {
   /// 重量
   final FontWeight? textWeight;
 
+  /// 文字字符串
+  final String? suffixText;
+
+  /// 颜色
+  final Color suffixTextColor;
+
+  /// 大小
+  final double? suffixTextSize;
+
+  /// 样式
+  final TextStyle? suffixTextStyle;
+
+  /// 重量
+  final FontWeight? suffixTextWeight;
+
   /// 行数
   final int? maxLines;
 
@@ -61,6 +76,11 @@ class SuperRichText extends StatelessWidget {
     this.textSize,
     this.textStyle,
     this.textWeight,
+    this.suffixText,
+    this.suffixTextColor = const Color(0xFF333333),
+    this.suffixTextSize,
+    this.suffixTextStyle,
+    this.suffixTextWeight,
     this.maxLines,
     this.softWrap = true,
     this.overflow = TextOverflow.ellipsis,
@@ -94,6 +114,15 @@ class SuperRichText extends StatelessWidget {
                   color: textColor,
                   fontSize: textSize,
                   fontWeight: textWeight,
+                ),
+          ),
+          TextSpan(
+            text: suffixText,
+            style: suffixTextStyle?.copyWith(color: suffixTextColor, fontSize: suffixTextSize, fontWeight: suffixTextWeight) ??
+                TextStyle(
+                  color: suffixTextColor,
+                  fontSize: suffixTextSize,
+                  fontWeight: suffixTextWeight,
                 ),
           ),
           for (var span in spanList) span
