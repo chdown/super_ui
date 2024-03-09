@@ -136,13 +136,13 @@ class SuperItemText extends StatelessWidget {
         child: GestureDetector(
           child: Row(
             children: [
-              SuperText(text: title ?? "", color: Color(enable ? 0xFF666666 : 0xFF999999), fontSize: 15),
+              SuperText(text: title ?? "", textColor: Color(enable ? 0xFF666666 : 0xFF999999), textSize: 15),
               const SizedBox(width: 6),
               Expanded(
                 child: SuperText(
                   text: (text != null && text != '') ? text! : hintTextStr,
-                  color: (enable && (text != null && text!.isNotEmpty)) ? (textColor ?? const Color(0xFF666666)) : const Color(0xFF999999),
-                  fontSize: 15,
+                  textColor: (enable && (text != null && text!.isNotEmpty)) ? (textColor ?? const Color(0xFF666666)) : const Color(0xFF999999),
+                  textSize: 15,
                   maxLines: maxLines,
                   overflow: TextOverflow.ellipsis,
                   textAlign: textAlign,

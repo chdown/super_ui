@@ -7,14 +7,14 @@ class SuperText extends StatelessWidget {
   /// 文字字符串
   final String text;
 
-  /// 样式
-  final TextStyle? style;
-
   /// 颜色
-  final Color? color;
+  final Color? textColor;
 
   /// 大小
-  final double? fontSize;
+  final double? textSize;
+
+  /// 样式
+  final TextStyle? textStyle;
 
   /// 重量
   final FontWeight? weight;
@@ -34,12 +34,12 @@ class SuperText extends StatelessWidget {
   const SuperText({
     Key? key,
     required this.text,
-    this.style,
+    this.textStyle,
     this.maxLines = 1,
     this.softWrap = true,
     this.overflow = TextOverflow.ellipsis,
-    this.color,
-    this.fontSize,
+    this.textColor,
+    this.textSize,
     this.weight,
     this.textAlign,
   }) : super(key: key);
@@ -51,10 +51,10 @@ class SuperText extends StatelessWidget {
     }
     return Text(
       text,
-      style: style?.copyWith(color: color, fontSize: fontSize, fontWeight: weight) ??
+      style: textStyle?.copyWith(color: textColor, fontSize: textSize, fontWeight: weight) ??
           TextStyle(
-            color: color,
-            fontSize: fontSize,
+            color: textColor,
+            fontSize: textSize,
             fontWeight: weight,
           ),
       overflow: overflow,

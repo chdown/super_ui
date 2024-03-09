@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SuperTestButton(
+                  SuperButton(
                     width: 200,
                     margin: EdgeInsets.all(10),
                     height: 80,
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     text: '111111111',
                     onTap: () {},
                   ),
-                  SuperTestButton(
+                  SuperButton(
                     margin: EdgeInsets.all(10),
                     width: 200,
                     height: 80,
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     textColor: Colors.black45,
                     onTap: () {},
                   ),
-                  SuperTestButton(
+                  SuperButton(
                     margin: EdgeInsets.all(10),
                     width: 200,
                     height: 80,
@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     text: '333333333',
                     onTap: () {},
                   ),
-                  SuperTestButton(
+                  SuperButton(
                     width: 200,
                     margin: EdgeInsets.all(10),
                     height: 80,
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     suffixWidget: Icon(Icons.confirmation_num_sharp),
                     onTap: () {},
                   ),
-                  SuperTestButton(
+                  SuperButton(
                     width: 200,
                     height: 80,
                     margin: EdgeInsets.all(10),
@@ -99,32 +99,32 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () {},
                   ),
                   SuperDivider(),
-                  SuperTestButton(
+                  SuperButton(
                     type: ButtonType.filled,
                     text: '111111111',
                     onTap: () {},
                     enabled: false,
                   ),
-                  SuperTestButton(
+                  SuperButton(
                     type: ButtonType.outlined,
                     textColor: Colors.black,
                     text: '222222222',
                     onTap: () {},
                     enabled: false,
                   ),
-                  SuperTestButton(
+                  SuperButton(
                     type: ButtonType.outlinedPrimary,
                     text: '333333333',
                     onTap: () {},
                     enabled: false,
                   ),
-                  SuperTestButton(
+                  SuperButton(
                     type: ButtonType.text,
                     text: '444444444',
                     onTap: () {},
                     enabled: false,
                   ),
-                  SuperTestButton(
+                  SuperButton(
                     type: ButtonType.textPrimary,
                     text: '55555555',
                     onTap: () {},
