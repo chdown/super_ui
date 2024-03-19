@@ -136,7 +136,7 @@ class SuperItemText extends StatelessWidget {
         child: GestureDetector(
           child: Row(
             children: [
-              SuperText(text: title ?? "", textColor: Color(enable ? 0xFF666666 : 0xFF999999), textSize: 15),
+              SuperText(text: title ?? "", textColor: enable ? (titleColor ?? const Color(0xFF666666)) : const Color(0xFF999999), textSize: 15),
               const SizedBox(width: 6),
               Expanded(
                 child: SuperText(
