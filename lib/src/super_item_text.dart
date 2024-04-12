@@ -12,6 +12,9 @@ enum ItemHitType { none, select, input }
 enum ItemIconType { none, right, date, down }
 
 class SuperItemText extends StatelessWidget {
+  /// 标题自定义widget
+  final Widget? titleWidget;
+
   /// 标题
   final String? title;
 
@@ -77,6 +80,7 @@ class SuperItemText extends StatelessWidget {
 
   const SuperItemText({
     super.key,
+    this.titleWidget,
     this.title,
     this.titleColor,
     this.titleSize,
@@ -136,7 +140,7 @@ class SuperItemText extends StatelessWidget {
         child: GestureDetector(
           child: Row(
             children: [
-              SuperText(text: title ?? "", textColor: enable ? (titleColor ?? const Color(0xFF666666)) : const Color(0xFF999999), textSize: 15),
+              titleWidget ?? SuperText(text: title ?? "", textColor: enable ? (titleColor ?? const Color(0xFF666666)) : const Color(0xFF999999), textSize: 15),
               const SizedBox(width: 6),
               Expanded(
                 child: SuperText(

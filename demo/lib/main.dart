@@ -121,6 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   SuperButton(
                     type: ButtonType.text,
                     text: '444444444',
+                    padding: EdgeInsets.zero,
                     onTap: () {},
                     enabled: false,
                   ),
