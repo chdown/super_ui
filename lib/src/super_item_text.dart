@@ -22,7 +22,7 @@ class SuperItemText extends StatelessWidget {
   final Color? titleColor;
 
   /// 标题文本大小
-  final int? titleSize;
+  final double titleSize;
 
   /// 文本
   final String? text;
@@ -31,7 +31,7 @@ class SuperItemText extends StatelessWidget {
   final Color? textColor;
 
   /// 文本大小
-  final int? textSize;
+  final double textSize;
 
   /// 文本对齐方向
   final TextAlign? textAlign;
@@ -83,10 +83,10 @@ class SuperItemText extends StatelessWidget {
     this.titleWidget,
     this.title,
     this.titleColor,
-    this.titleSize,
+    this.titleSize = 15,
     this.text,
     this.textColor,
-    this.textSize,
+    this.textSize = 15,
     this.textAlign = TextAlign.right,
     this.maxLines = 1,
     this.hintText,
@@ -140,13 +140,18 @@ class SuperItemText extends StatelessWidget {
         child: GestureDetector(
           child: Row(
             children: [
-              titleWidget ?? SuperText(text: title ?? "", textColor: enable ? (titleColor ?? const Color(0xFF666666)) : const Color(0xFF999999), textSize: 15),
+              titleWidget ??
+                  SuperText(
+                    text: title ?? "",
+                    textColor: enable ? (titleColor ?? const Color(0xFF666666)) : const Color(0xFF999999),
+                    textSize: titleSize,
+                  ),
               const SizedBox(width: 6),
               Expanded(
                 child: SuperText(
                   text: (text != null && text != '') ? text! : hintTextStr,
                   textColor: (enable && (text != null && text!.isNotEmpty)) ? (textColor ?? const Color(0xFF666666)) : const Color(0xFF999999),
-                  textSize: 15,
+                  textSize: textSize,
                   maxLines: maxLines,
                   overflow: TextOverflow.ellipsis,
                   textAlign: textAlign,
