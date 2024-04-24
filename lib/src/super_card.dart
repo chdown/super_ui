@@ -20,6 +20,9 @@ class SuperCard extends StatelessWidget {
   /// 布局方向
   final Alignment? alignment;
 
+  /// 布局方向
+  final BoxConstraints? constraints;
+
   /// 圆角
   final double radius;
   final double? topRadius;
@@ -67,6 +70,7 @@ class SuperCard extends StatelessWidget {
     this.bottomLeftRadius,
     this.bottomRightRadius,
     this.alignment,
+    this.constraints,
     this.margin,
     this.paddingHorizontal = 6,
     this.paddingVertical = 8,
@@ -84,6 +88,7 @@ class SuperCard extends StatelessWidget {
       width: width,
       height: height,
       alignment: alignment,
+      constraints: constraints,
       decoration: BoxDecoration(
         image: image,
         border: border ?? Border.all(color: borderColor ?? Colors.transparent, width: borderWidth ?? 1),
