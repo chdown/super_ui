@@ -103,6 +103,8 @@ class SuperButton extends StatelessWidget {
         style: FilledButton.styleFrom(
           backgroundColor: backgroundColor,
           padding: padding,
+          minimumSize: const Size(0, 0),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           alignment: alignment,
           shape: border,
           side: borderWidth != null && borderColor != null ? BorderSide(width: borderWidth!, color: borderColor!) : null,
@@ -115,6 +117,8 @@ class SuperButton extends StatelessWidget {
         style: FilledButton.styleFrom(
           backgroundColor: backgroundColor,
           padding: padding,
+          minimumSize: const Size(0, 0),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           alignment: alignment,
           shape: border,
           side: enabled && ((borderWidth != null && borderColor != null) || type == ButtonType.outlinedPrimary)
@@ -129,6 +133,8 @@ class SuperButton extends StatelessWidget {
         style: TextButton.styleFrom(
           backgroundColor: backgroundColor,
           padding: padding,
+          minimumSize: const Size(0, 0),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           alignment: alignment,
           shape: border,
           side: borderWidth != null && borderColor != null ? BorderSide(width: borderWidth!, color: borderColor!) : null,
