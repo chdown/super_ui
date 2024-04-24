@@ -10,6 +10,12 @@ class SuperDivider extends StatelessWidget {
   /// 分割线的或者分割条的高度 默认0.5
   final double height;
 
+  /// 是否展示为虚线
+  final bool isDashed;
+
+  /// 虚线长度
+  final double dashSpace;
+
   /// 垂直缩进距离
   final double? verticalPadding;
 
@@ -32,6 +38,8 @@ class SuperDivider extends StatelessWidget {
     Key? key,
     this.color = const Color(0xFFCCCCCC),
     this.height = 0.5,
+    this.isDashed = false,
+    this.dashSpace = 5,
     this.horizontalPadding,
     this.leftPadding,
     this.rightPadding,
@@ -49,11 +57,57 @@ class SuperDivider extends StatelessWidget {
         top: topPadding ?? verticalPadding ?? 0,
         bottom: bottomPadding ?? verticalPadding ?? 0,
       ),
-      child: Divider(
-        thickness: height,
-        height: height,
-        color: color,
-      ),
+      child: isDashed
+          ? CustomPaint(
+              size: Size(double.infinity, height),
+              painter: DashedLinePainter(
+                color: color,
+                height: height,
+                dashWidth: dashSpace,
+                dashSpace: dashSpace,
+              ),
+            )
+          : Divider(
+              thickness: height,
+              height: height,
+              color: color,
+            ),
     );
+  }
+}
+
+class DashedLinePainter extends CustomPainter {
+  final Color color;
+  final double height;
+  final double dashWidth;
+  final double dashSpace;
+
+  DashedLinePainter({
+    required this.color,
+    required this.height,
+    required this.dashWidth,
+    required this.dashSpace,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..strokeWidth = height;
+
+    double startX = 0;
+    while (startX < size.width) {
+      canvas.drawLine(
+        Offset(startX, 0),
+        Offset(startX + dashWidth, 0),
+        paint,
+      );
+      startX += dashWidth + dashSpace;
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
   }
 }
