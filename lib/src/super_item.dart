@@ -21,6 +21,9 @@ class SuperItem extends StatelessWidget {
   /// 子布局
   final Widget child;
 
+  /// child左右边距
+  final double childHorMargin;
+
   /// 提示文本
   final String? popText;
 
@@ -56,6 +59,7 @@ class SuperItem extends StatelessWidget {
     this.popTextColor = Colors.black,
     this.popTextSize = 12,
     this.unitText,
+    this.unitMargin = 5,
     this.unitTextColor = const Color(0xFF333333),
     this.unitTextSize = 14,
     this.mustForm = false,
@@ -82,7 +86,6 @@ class SuperItem extends StatelessWidget {
               ),
             ),
             if (popText != null && popText!.isNotEmpty) ...[
-              const SizedBox(width: 5),
               SuperPopup(
                 showInterceptor: popInterceptor,
                 backgroundColor: Colors.white,
@@ -104,10 +107,10 @@ class SuperItem extends StatelessWidget {
             ]
           ],
         ),
-        const SizedBox(width: 20),
+        SizedBox(width: childMargin),
         Expanded(child: child),
         if (unitText != null && unitText!.isNotEmpty) ...[
-          const SizedBox(width: 10),
+          SizedBox(width: childMargin),
           SuperText(text: unitText!, textSize: unitTextSize, textColor: unitTextColor),
         ]
       ],
