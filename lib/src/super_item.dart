@@ -9,20 +9,55 @@ import 'super_text.dart';
 /// @description 单行展示组件
 ///
 class SuperItem extends StatelessWidget {
+  /// 标题
   final String title;
+
+  /// 标题文本颜色
+  final Color titleColor;
+
+  /// 标题文本大小
+  final double titleSize;
+
+  /// 子布局
   final Widget child;
-  final bool Function() popInterceptor; // pop拦截器
+
+  /// 提示文本
   final String? popText;
+
+  /// 标题文本颜色
+  final Color popTextColor;
+
+  /// 标题文本大小
+  final double popTextSize;
+
+  /// 单位文本
   final String? unitText;
+
+  /// 标题文本颜色
+  final Color unitTextColor;
+
+  /// 标题文本大小
+  final double unitTextSize;
+
+  /// 是否带*
   final bool mustForm;
+
+  /// pop拦截器
+  final bool Function() popInterceptor;
 
   const SuperItem({
     Key? key,
     required this.title,
+    this.titleColor = const Color(0xFF333333),
+    this.titleSize = 14,
     required this.child,
     required this.popInterceptor,
     this.popText,
+    this.popTextColor = Colors.black,
+    this.popTextSize = 12,
     this.unitText,
+    this.unitTextColor = const Color(0xFF333333),
+    this.unitTextSize = 14,
     this.mustForm = false,
   }) : super(key: key);
 
@@ -35,7 +70,8 @@ class SuperItem extends StatelessWidget {
           children: [
             SuperText(
               text: title,
-              textSize: 14,
+              textSize: titleSize,
+              textColor: titleColor,
             ),
             Visibility(
               visible: mustForm,
@@ -52,14 +88,17 @@ class SuperItem extends StatelessWidget {
                 backgroundColor: Colors.white,
                 content: SuperText(
                   text: popText!,
-                  textColor: Colors.black,
-                  textSize: 12,
+                  textColor: popTextColor,
+                  textSize: popTextSize,
                   maxLines: 10,
                 ),
-                child: SuperIcon.icon(
-                  Icons.error_outline,
-                  color: Colors.black,
-                  size: 14,
+                child: Padding(
+                  padding: const EdgeInsets.all(4),
+                  child: SuperIcon.icon(
+                    Icons.error_outline,
+                    color: Colors.black,
+                    size: 14,
+                  ),
                 ),
               )
             ]
@@ -69,7 +108,7 @@ class SuperItem extends StatelessWidget {
         Expanded(child: child),
         if (unitText != null && unitText!.isNotEmpty) ...[
           const SizedBox(width: 10),
-          SuperText(text: unitText!),
+          SuperText(text: unitText!, textSize: unitTextSize, textColor: unitTextColor),
         ]
       ],
     );
