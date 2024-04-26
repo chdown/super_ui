@@ -51,15 +51,15 @@ class SuperItem extends StatelessWidget {
   const SuperItem({
     Key? key,
     required this.title,
-    this.titleColor = const Color(0xFF333333),
-    this.titleSize = 14,
     required this.child,
     required this.popInterceptor,
+    this.titleColor = const Color(0xFF333333),
+    this.titleSize = 14,
+    this.childHorMargin = 5,
     this.popText,
     this.popTextColor = Colors.black,
     this.popTextSize = 12,
     this.unitText,
-    this.unitMargin = 5,
     this.unitTextColor = const Color(0xFF333333),
     this.unitTextSize = 14,
     this.mustForm = false,
@@ -107,10 +107,10 @@ class SuperItem extends StatelessWidget {
             ]
           ],
         ),
-        SizedBox(width: childMargin),
+        SizedBox(width: childHorMargin),
         Expanded(child: child),
         if (unitText != null && unitText!.isNotEmpty) ...[
-          SizedBox(width: childMargin),
+          SizedBox(width: childHorMargin),
           SuperText(text: unitText!, textSize: unitTextSize, textColor: unitTextColor),
         ]
       ],
