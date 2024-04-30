@@ -18,6 +18,9 @@ class SuperItem extends StatelessWidget {
   /// 标题文本大小
   final double titleSize;
 
+  /// 自重
+  final FontWeight? titleWidget;
+
   /// 子布局
   final Widget child;
 
@@ -55,6 +58,7 @@ class SuperItem extends StatelessWidget {
     required this.popInterceptor,
     this.titleColor = const Color(0xFF333333),
     this.titleSize = 14,
+    this.titleWidget,
     this.childHorMargin = 5,
     this.popText,
     this.popTextColor = Colors.black,
@@ -76,6 +80,7 @@ class SuperItem extends StatelessWidget {
               text: title,
               textSize: titleSize,
               textColor: titleColor,
+              weight: titleWidget,
             ),
             Visibility(
               visible: mustForm,
