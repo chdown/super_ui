@@ -31,6 +31,9 @@ class SuperTextFiled extends StatefulWidget {
   /// 边框圆角大小
   final double borderRadius;
 
+  /// 边框圆角大小
+  final double borderUnderLineRadius;
+
   /// 边框宽度
   final double borderWidth;
 
@@ -148,6 +151,7 @@ class SuperTextFiled extends StatefulWidget {
     this.keyboardType,
     this.style = TextFiledStyle.none,
     this.borderRadius = 8,
+    this.borderUnderLineRadius = 0,
     this.borderColor = const Color(0xFF999999),
     this.errorColor = const Color(0xFFFF0000),
     this.borderWidth = 1.0,
@@ -261,11 +265,11 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
       case TextFiledStyle.underline:
         inputBorder = UnderlineInputBorder(
           borderSide: BorderSide(color: widget.borderColor, width: widget.borderWidth),
-          borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
+          borderRadius: BorderRadius.all(Radius.circular(widget.borderUnderLineRadius)),
         );
         errorBorder = UnderlineInputBorder(
           borderSide: BorderSide(color: widget.errorColor, width: widget.borderWidth),
-          borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
+          borderRadius: BorderRadius.all(Radius.circular(widget.borderUnderLineRadius)),
         );
         break;
       case TextFiledStyle.fill:
