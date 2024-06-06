@@ -10,6 +10,7 @@ class SuperPopup extends StatelessWidget {
   final GlobalKey? anchorKey;
   final Widget content;
   final Widget child;
+  final EdgeInsets? padding;
   final bool isLongPress;
   final Color? backgroundColor;
   final Color? barrierColor;
@@ -20,6 +21,7 @@ class SuperPopup extends StatelessWidget {
     super.key,
     required this.content,
     required this.child,
+    this.padding,
     this.anchorKey,
     this.isLongPress = false,
     this.backgroundColor,
@@ -35,6 +37,7 @@ class SuperPopup extends StatelessWidget {
     final offset = renderBox.localToGlobal(renderBox.paintBounds.topLeft);
     Navigator.of(context).push(_PopupRoute(
       targetRect: offset & renderBox.paintBounds.size,
+      padding: padding,
       backgroundColor: backgroundColor,
       showArrow: showArrow,
       barriersColor: barrierColor,
@@ -62,6 +65,7 @@ class SuperPopup extends StatelessWidget {
 class _PopupContent extends StatelessWidget {
   final Widget child;
   final GlobalKey childKey;
+  final EdgeInsets? padding;
   final GlobalKey arrowKey;
   final _ArrowDirection arrowDirection;
   final double arrowHorizontal;
@@ -72,6 +76,7 @@ class _PopupContent extends StatelessWidget {
     Key? key,
     required this.child,
     required this.childKey,
+    this.padding,
     required this.arrowKey,
     required this.arrowHorizontal,
     required this.showArrow,
@@ -85,7 +90,7 @@ class _PopupContent extends StatelessWidget {
       children: [
         Container(
           key: childKey,
-          padding: const EdgeInsets.all(15),
+          padding: padding ?? const EdgeInsets.all(15),
           margin: const EdgeInsets.symmetric(vertical: 10).copyWith(
             top: arrowDirection == _ArrowDirection.bottom ? 0 : null,
             bottom: arrowDirection == _ArrowDirection.top ? 0 : null,
@@ -162,6 +167,7 @@ class _PopupRoute extends PopupRoute<void> {
 
   final GlobalKey _childKey = GlobalKey();
   final GlobalKey _arrowKey = GlobalKey();
+  final EdgeInsets? padding;
   final Color? backgroundColor;
   final bool showArrow;
   final Color? barriersColor;
@@ -182,6 +188,7 @@ class _PopupRoute extends PopupRoute<void> {
     TraversalEdgeBehavior? traversalEdgeBehavior,
     required this.child,
     required this.targetRect,
+    this.padding,
     this.backgroundColor,
     required this.showArrow,
     this.barriersColor,
