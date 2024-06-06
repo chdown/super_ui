@@ -304,6 +304,7 @@ class _PopupRoute extends PopupRoute<void> {
     child = _PopupContent(
       childKey: _childKey,
       arrowKey: _arrowKey,
+      padding: padding,
       arrowHorizontal: _arrowHorizontal,
       arrowDirection: _arrowDirection,
       backgroundColor: backgroundColor,
