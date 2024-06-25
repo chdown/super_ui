@@ -75,6 +75,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   margin: EdgeInsets.zero,
                   onTap: () {},
                 ),
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    debugPrint("=================Container==========");
+                  },
+                  child: Container(
+                    width: 400,
+                    height: 200,
+                    color: Colors.grey,
+                    child: Center(
+                      child: SuperItemText(
+                        height: 80,
+                        backgroundColor: Colors.white,
+                        title: "title",
+                        text: "text",
+                      ),
+                    ),
+                  ),
+                )
               ]),
             ),
           ],

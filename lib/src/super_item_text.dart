@@ -142,9 +142,11 @@ class SuperItemText extends StatelessWidget {
     }
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () {
-        if (enable) onTap?.call(text ?? "");
-      },
+      onTap: onTap == null
+          ? null
+          : () {
+              if (enable) onTap?.call(text ?? "");
+            },
       child: Container(
         height: height,
         padding: padding,
