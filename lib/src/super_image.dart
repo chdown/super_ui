@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum ImageType { asset, network, file }
+enum ImageType { asset, network }
 
 /// @author : ch
 /// @description 图片加载
@@ -104,23 +102,6 @@ class SuperImage extends StatelessWidget {
         initGestureConfig = null,
         super(key: key);
 
-  const SuperImage.file({
-    Key? key,
-    required this.url,
-    this.width,
-    this.height,
-    this.radius,
-    this.fit = BoxFit.cover,
-    this.backgroundColor,
-    this.placeholder,
-    this.error,
-    this.builder,
-  })  : type = ImageType.file,
-        mode = ExtendedImageMode.none,
-        enableSlideOutPage = false,
-        initGestureConfig = null,
-        super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.all(Radius.circular(radius ?? 10));
@@ -130,7 +111,6 @@ class SuperImage extends StatelessWidget {
     if (superImageType == null) {
       if (url.startsWith("assets")) superImageType = ImageType.asset;
       if (url.startsWith("http")) superImageType = ImageType.network;
-      if (url.startsWith("/")) superImageType = ImageType.file;
     }
     Widget? image;
     switch (superImageType!) {
@@ -165,31 +145,6 @@ class SuperImage extends StatelessWidget {
         } else {
           image = ExtendedImage.network(
             url,
-            key: ValueKey(url),
-            width: width,
-            height: height,
-            fit: fit,
-            shape: BoxShape.rectangle,
-            borderRadius: borderRadius,
-            mode: mode,
-            gaplessPlayback: true,
-            enableSlideOutPage: enableSlideOutPage,
-            initGestureConfigHandler: initGestureConfig,
-            loadStateChanged: (state) => _buildLoadState(
-              context: context,
-              state: state,
-              placeholder: placeholderChild,
-              error: errorChild,
-            ),
-          );
-        }
-        break;
-      case ImageType.file:
-        if (!url.startsWith('/')) {
-          image = errorChild;
-        } else {
-          image = ExtendedImage.file(
-            File(url),
             key: ValueKey(url),
             width: width,
             height: height,
