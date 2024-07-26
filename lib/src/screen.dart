@@ -18,10 +18,4 @@ abstract class Screen {
 
   /// 获取底部安全区域
   static double get bottomBar => mediaQuery.padding.bottom;
-
-  /// 是否是平板
-  static bool isTablet(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return size.shortestSide > 600;
-  }
 }

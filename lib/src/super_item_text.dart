@@ -176,16 +176,16 @@ class SuperItemText extends StatelessWidget {
                 ),
               ),
               Visibility(
+                visible: custom != null,
+                child: custom ?? const SizedBox.shrink(),
+              ),
+              Visibility(
                 visible: itemIconType == ItemIconType.date && (onTap != null || tapShowIcon),
                 child: Icon(
                   Icons.date_range,
                   size: itemIconSize,
                   color: enable ? itemIconColor : disableColor,
                 ),
-              ),
-              Visibility(
-                visible: custom != null,
-                child: custom ?? const SizedBox.shrink(),
               ),
               Visibility(
                 visible: itemIconType == ItemIconType.right && (onTap != null || tapShowIcon),
