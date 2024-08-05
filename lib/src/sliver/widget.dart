@@ -82,7 +82,9 @@ class SliverPinnedPersistentHeader extends StatelessWidget {
   ///
   /// The [delegate] must not be null.
   const SliverPinnedPersistentHeader({required this.delegate});
+
   final SliverPinnedPersistentHeaderDelegate delegate;
+
   @override
   Widget build(BuildContext context) {
     return SliverPinnedPersistentHeaderRenderObjectWidget(delegate);
@@ -91,6 +93,7 @@ class SliverPinnedPersistentHeader extends StatelessWidget {
 
 class SliverPinnedPersistentHeaderRenderObjectWidget extends RenderObjectWidget {
   const SliverPinnedPersistentHeaderRenderObjectWidget(this.delegate);
+
   final SliverPinnedPersistentHeaderDelegate delegate;
 
   @override
