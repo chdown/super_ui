@@ -57,8 +57,7 @@ abstract class SliverPinnedPersistentHeaderDelegate {
   /// be based entirely on the constructor arguments passed to the delegate. See
   /// [shouldRebuild], which must return true if a new delegate would return a
   /// different value.
-  Widget build(BuildContext context, double shrinkOffset, double? minExtent,
-      double maxExtent, bool overlapsContent);
+  Widget build(BuildContext context, double shrinkOffset, double? minExtent, double maxExtent, bool overlapsContent);
 
   /// Whether this delegate is meaningfully different from the old delegate.
   ///
@@ -69,8 +68,7 @@ abstract class SliverPinnedPersistentHeaderDelegate {
   /// different values for [minExtent], [maxExtent], [snapConfiguration], or
   /// would return a meaningfully different widget tree from [build] for the
   /// same arguments.
-  bool shouldRebuild(
-      covariant SliverPinnedPersistentHeaderDelegate oldDelegate);
+  bool shouldRebuild(covariant SliverPinnedPersistentHeaderDelegate oldDelegate);
 }
 
 /// A sliver whose size varies when the sliver is scrolled to the leading edge
@@ -91,8 +89,7 @@ class SliverPinnedPersistentHeader extends StatelessWidget {
   }
 }
 
-class SliverPinnedPersistentHeaderRenderObjectWidget
-    extends RenderObjectWidget {
+class SliverPinnedPersistentHeaderRenderObjectWidget extends RenderObjectWidget {
   const SliverPinnedPersistentHeaderRenderObjectWidget(this.delegate);
   final SliverPinnedPersistentHeaderDelegate delegate;
 
@@ -127,8 +124,7 @@ class SliverPinnedToBoxAdapter extends SingleChildRenderObjectWidget {
   }) : super(key: key, child: child);
 
   @override
-  RenderSliverPinnedToBoxAdapter createRenderObject(BuildContext context) =>
-      RenderSliverPinnedToBoxAdapter();
+  RenderSliverPinnedToBoxAdapter createRenderObject(BuildContext context) => RenderSliverPinnedToBoxAdapter();
 }
 
 /// Sliver BoxAdapter for nested scrollable (like webview)
@@ -146,16 +142,13 @@ class SliverToNestedScrollBoxAdapter extends SingleChildRenderObjectWidget {
   final ScrollOffsetChanged onScrollOffsetChanged;
 
   @override
-  RenderSliverToNestedScrollBoxAdapter createRenderObject(
-          BuildContext context) =>
-      RenderSliverToNestedScrollBoxAdapter(
+  RenderSliverToNestedScrollBoxAdapter createRenderObject(BuildContext context) => RenderSliverToNestedScrollBoxAdapter(
         childExtent: childExtent,
         onScrollOffsetChanged: onScrollOffsetChanged,
       );
 
   @override
-  void updateRenderObject(BuildContext context,
-      covariant RenderSliverToNestedScrollBoxAdapter renderObject) {
+  void updateRenderObject(BuildContext context, covariant RenderSliverToNestedScrollBoxAdapter renderObject) {
     renderObject.childExtent = childExtent;
     renderObject.onScrollOffsetChanged = onScrollOffsetChanged;
   }
@@ -228,8 +221,7 @@ class ExtendedSliverAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SafeArea? safeArea =
-        context.findAncestorWidgetOfExactType<SafeArea>();
+    final SafeArea? safeArea = context.findAncestorWidgetOfExactType<SafeArea>();
     double? statusbarHeight = this.statusbarHeight;
     final double toolbarHeight = this.toolbarHeight ?? kToolbarHeight;
     if (statusbarHeight == null && (safeArea == null || !safeArea.top)) {
@@ -261,8 +253,7 @@ class ExtendedSliverAppbar extends StatelessWidget {
   }
 }
 
-class _ExtendedSliverAppbarDelegate
-    extends SliverPinnedPersistentHeaderDelegate {
+class _ExtendedSliverAppbarDelegate extends SliverPinnedPersistentHeaderDelegate {
   _ExtendedSliverAppbarDelegate({
     required Widget minExtentProtoType,
     required Widget maxExtentProtoType,
@@ -339,8 +330,7 @@ class _ExtendedSliverAppbarDelegate
     bool overlapsContent,
   ) {
     onBuild?.call(context, shrinkOffset, minExtent, maxExtent, overlapsContent);
-    final double opacity =
-        (shrinkOffset / (maxExtent - minExtent!)).clamp(0.0, 1.0);
+    final double opacity = (shrinkOffset / (maxExtent - minExtent!)).clamp(0.0, 1.0);
     Widget? titleWidget = title;
     if (titleWidget != null) {
       if (isOpacityFadeWithTitle) {
