@@ -4,7 +4,7 @@ export 'src/load/super_load.dart';
 export 'src/load/super_load_page.dart';
 export 'src/load/super_load_status.dart';
 export 'src/screen.dart';
-export 'src/sliver/widget.dart';
+export 'src/sliver/widget.dart' show ExtendedSliverAppbar, SliverPinnedPersistentHeader, SliverPinnedToBoxAdapter, SliverToNestedScrollBoxAdapter;
 export 'src/super_body.dart';
 export 'src/super_button.dart';
 export 'src/super_card.dart';
