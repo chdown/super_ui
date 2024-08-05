@@ -170,6 +170,7 @@ class ExtendedSliverAppbar extends StatelessWidget {
     this.isOpacityFadeWithTitle = true,
     this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
     this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.opacityShow = 0,
   });
 
   /// A widget to display before the [title].
@@ -219,6 +220,10 @@ class ExtendedSliverAppbar extends StatelessWidget {
   /// By default, the value of crossAxisAlignment is CrossAxisAlignment.center.
   final CrossAxisAlignment crossAxisAlignment;
 
+  /// author ch
+  /// 控制内容展示时机，为1最终才展示，为0默认占用空间
+  final double opacityShow;
+
   @override
   Widget build(BuildContext context) {
     final SafeArea? safeArea = context.findAncestorWidgetOfExactType<SafeArea>();
@@ -248,6 +253,7 @@ class ExtendedSliverAppbar extends StatelessWidget {
         isOpacityFadeWithTitle: isOpacityFadeWithTitle,
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
+        opacityShow: opacityShow,
       ),
     );
   }
@@ -269,6 +275,7 @@ class _ExtendedSliverAppbarDelegate extends SliverPinnedPersistentHeaderDelegate
     this.isOpacityFadeWithTitle = true,
     this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
     this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.opacityShow = 0,
   }) : super(
           minExtentProtoType: minExtentProtoType,
           maxExtentProtoType: maxExtentProtoType,
@@ -321,6 +328,10 @@ class _ExtendedSliverAppbarDelegate extends SliverPinnedPersistentHeaderDelegate
   /// By default, the value of crossAxisAlignment is CrossAxisAlignment.center.
   final CrossAxisAlignment crossAxisAlignment;
 
+  /// author ch
+  /// 控制内容展示时机，为1最终才展示，为0默认占用空间
+  final double opacityShow;
+
   @override
   Widget build(
     BuildContext context,
@@ -342,6 +353,28 @@ class _ExtendedSliverAppbarDelegate extends SliverPinnedPersistentHeaderDelegate
     } else {
       titleWidget = Container();
     }
+    Widget? leadingWidget = leading;
+    if (leadingWidget != null) {
+      if (isOpacityFadeWithTitle) {
+        leadingWidget = Opacity(
+          opacity: opacity,
+          child: leadingWidget,
+        );
+      }
+    } else {
+      leadingWidget = Container();
+    }
+    Widget? actionsWidget = actions;
+    if (actionsWidget != null) {
+      if (isOpacityFadeWithTitle) {
+        actionsWidget = Opacity(
+          opacity: opacity,
+          child: actionsWidget,
+        );
+      }
+    } else {
+      actionsWidget = Container();
+    }
     final ThemeData theme = Theme.of(context);
 
     Color toolBarColor = this.toolBarColor ?? theme.primaryColor;
@@ -357,34 +390,34 @@ class _ExtendedSliverAppbarDelegate extends SliverPinnedPersistentHeaderDelegate
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
         children: <Widget>[
-          leading ??
-              const BackButton(
-                onPressed: null,
-              ),
+          leadingWidget,
           titleWidget,
-          actions ?? Container(),
+          actionsWidget,
         ],
       ),
     );
 
-    return Material(
-      child: ClipRect(
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-              child: maxExtentProtoType,
-              top: -shrinkOffset,
-              bottom: 0,
-              left: 0,
-              right: 0,
-            ),
-            Positioned(
-              child: toolbar,
-              top: 0,
-              left: 0,
-              right: 0,
-            ),
-          ],
+    return Visibility(
+      visible: opacity >= opacityShow,
+      child: Material(
+        child: ClipRect(
+          child: Stack(
+            children: <Widget>[
+              Positioned(
+                child: maxExtentProtoType,
+                top: -shrinkOffset,
+                bottom: 0,
+                left: 0,
+                right: 0,
+              ),
+              Positioned(
+                child: toolbar,
+                top: 0,
+                left: 0,
+                right: 0,
+              ),
+            ],
+          ),
         ),
       ),
     );
