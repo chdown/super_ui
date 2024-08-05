@@ -385,42 +385,42 @@ class _ExtendedSliverAppbarDelegate extends SliverPinnedPersistentHeaderDelegate
       toolBarColor = toolBarColor.withOpacity(opacity);
     }
 
-    final Widget toolbar = Container(
-      height: toolbarHeight! + statusbarHeight!,
-      padding: EdgeInsets.only(top: statusbarHeight!),
-      color: toolBarColor,
-      child: Row(
-        mainAxisAlignment: mainAxisAlignment,
-        crossAxisAlignment: crossAxisAlignment,
-        children: <Widget>[
-          leadingWidget,
-          titleWidget,
-          actionsWidget,
-        ],
+    final Widget toolbar = Visibility(
+      visible: opacity >= opacityShow,
+      child: Container(
+        height: toolbarHeight! + statusbarHeight!,
+        padding: EdgeInsets.only(top: statusbarHeight!),
+        color: toolBarColor,
+        child: Row(
+          mainAxisAlignment: mainAxisAlignment,
+          crossAxisAlignment: crossAxisAlignment,
+          children: <Widget>[
+            leadingWidget,
+            titleWidget,
+            actionsWidget,
+          ],
+        ),
       ),
     );
 
-    return Visibility(
-      visible: opacity >= opacityShow,
-      child: Material(
-        child: ClipRect(
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                child: maxExtentProtoType,
-                top: -shrinkOffset,
-                bottom: 0,
-                left: 0,
-                right: 0,
-              ),
-              Positioned(
-                child: toolbar,
-                top: 0,
-                left: 0,
-                right: 0,
-              ),
-            ],
-          ),
+    return Material(
+      child: ClipRect(
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              top: -shrinkOffset,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: maxExtentProtoType,
+            ),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: toolbar,
+            ),
+          ],
         ),
       ),
     );
