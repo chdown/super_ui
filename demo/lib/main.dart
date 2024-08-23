@@ -57,44 +57,78 @@ class _MyHomePageState extends State<MyHomePage> {
                   margin: EdgeInsets.zero,
                   onTap: () {},
                 ),
-                SuperButton(
-                  type: ButtonType.filled,
-                  text: '测试',
-                  margin: EdgeInsets.zero,
-                  onTap: () {},
-                ),
-                SuperButton(
-                  type: ButtonType.outlinedPrimary,
-                  text: '测试',
-                  margin: EdgeInsets.zero,
-                  onTap: () {},
-                ),
-                SuperButton(
-                  type: ButtonType.outlined,
-                  text: '测试',
-                  margin: EdgeInsets.zero,
-                  onTap: () {},
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    debugPrint("=================Container==========");
-                  },
-                  child: Container(
-                    width: 400,
-                    height: 200,
-                    color: Colors.grey,
-                    child: Center(
-                      child: SuperItemText(
-                        height: 80,
-                        backgroundColor: Colors.white,
-                        title: "title",
-                        text: "text",
-                      ),
-                    ),
-                  ),
-                )
               ]),
+            ),
+            Container(
+              height: 120,
+              color: Colors.amber,
+              child: TextField(
+                decoration: InputDecoration(
+                  // constraints: BoxConstraints.tight(Size(double.infinity, 120)),
+                  // isCollapsed: true,
+                  // isDense: true,
+                  fillColor: Colors.blueAccent,
+                  // contentPadding: EdgeInsets.only(top: 30, bottom: 30),
+                  filled: true,
+                  labelText: '出生日期：',
+                  prefixIcon: SuperIcon.icon(Icons.ac_unit),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              height: 120,
+              color: Colors.amber,
+              child: const TextField(
+                // Padding 置为左右 24，上 0 下 80
+                decoration: InputDecoration(
+                  // constraints: BoxConstraints.expand(height: 120),
+                  // isCollapsed: true,
+                  // isDense: true,
+                  fillColor: Colors.blueAccent,
+                  // isDense: true,
+                  isCollapsed: true,
+                  // contentPadding: EdgeInsets.all(6),
+                  // contentPadding: EdgeInsets.only(top: 12),
+                  // contentPadding: EdgeInsets.only(top: 30, bottom: 30),
+                  filled: true,
+                  // labelText: '出生日期：',
+                  // suffixIcon: SizedBox(
+                  //   height: 20,
+                  //   width: 20,
+                  //   child: Icon(
+                  //     Icons.cancel,
+                  //     opticalSize: 18,
+                  //     size: 18,
+                  //     color: Color(0xFF999999),
+                  //   ),
+                  // ),
+                  // suffixIconConstraints: BoxConstraints(minHeight: 30)
+                  // prefixIconConstraints: BoxConstraints.tightFor(height: 24),
+                ),
+              ),
+            ),
+            SizedBox(height: 30),
+            SuperTextFiled(
+              isDense: true,
+              fillColor: Colors.cyanAccent,
+              contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+              prefixIcon: SizedBox(
+                height: 20,
+                width: 20,
+                child: Icon(
+                  Icons.cancel,
+                  opticalSize: 18,
+                  size: 18,
+                  color: Color(0xFF999999),
+                ),
+              ),
+            ),
+            SuperButton(
+              type: ButtonType.text,
+              text: '测试',
+              margin: EdgeInsets.zero,
+              onTap: () {},
             ),
           ],
         ),

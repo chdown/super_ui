@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// @author : ch
-/// @date 2024-01-19 21:59:11
-/// @description 输入框组件
-///
 enum KeyboardType { number, text, decimal, decimalNegative }
 
 enum TextFiledStyle { none, fill, outline, underline }
 
+/// @author : ch
+/// @date 2024-01-19 21:59:11
+/// @description 输入框组件
+///
+/// 如果需要定制输入框的高度，可以使用以下属性
+/// isDense 使可编辑区域的高度边距减少，达到紧凑的效果。从而会影响输入框的高度。
+/// isCollapsed 完全去除默认的边距，使默认情况下 TextField 的高度和可编辑区域的高度一致
+/// *** 单行输入 ***
+/// 1、如果整个输入组件的额高度低于默认高度，可以通过上方的【isDense】和【isCollapsed】进行设置
+/// 2、通过contentPadding进行设置，默认为30
+/// *** 多行输入 ***
+/// 1、通过minLines进行设置
+/// *** 内容不居中适配 ***
+/// 1、若设置isDense和isCollapsed，同时添加了prefixIcon或prefixIcon时，需要设置 contentPaddings
+///
 class SuperTextFiled extends StatefulWidget {
   /// 输入框类型
   final TextFiledStyle style;
@@ -64,6 +75,9 @@ class SuperTextFiled extends StatefulWidget {
   /// 装饰是否与输入字段大小相同、该属性用于修改高度
   final bool isCollapsed;
 
+  /// 是否为紧凑模式
+  final bool isDense;
+
   /// 填充色
   final Color? fillColor;
 
@@ -79,10 +93,10 @@ class SuperTextFiled extends StatefulWidget {
   /// 提交监听
   final ValueChanged<String>? onSubmitted;
 
-  /// 大小适配器
-  final BoxConstraints? constraints;
+  /// 是否扩展
+  final bool expands;
 
-  /// 是否制度
+  /// 是否只读
   final bool readOnly;
 
   /// 自动获取焦点
@@ -92,7 +106,7 @@ class SuperTextFiled extends StatefulWidget {
   final int? minLines;
 
   /// 最大行数
-  final int maxLines;
+  final int? maxLines;
 
   /// 是否清除
   final bool isClear;
@@ -140,7 +154,7 @@ class SuperTextFiled extends StatefulWidget {
   const SuperTextFiled({
     super.key,
     this.isCollapsed = false,
-    this.constraints,
+    this.isDense = false,
     this.controller,
     this.originalText,
     this.textColor,
@@ -160,6 +174,7 @@ class SuperTextFiled extends StatefulWidget {
     this.textInputAction,
     this.inputFormatters,
     this.maxLength,
+    this.expands = false,
     this.readOnly = false,
     this.autofocus = false,
     this.minLines = 1,
@@ -302,18 +317,19 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
         });
         widget.onChanged?.call(text);
       },
+      expands: widget.expands,
       onSubmitted: widget.onSubmitted,
       readOnly: widget.readOnly,
       autofocus: widget.autofocus,
       minLines: widget.minLines,
-      maxLines: (widget.minLines != null && widget.minLines! > widget.maxLines) ? widget.minLines : widget.maxLines,
+      maxLines: (widget.minLines != null && widget.minLines! > (widget.maxLines ?? 1)) ? widget.minLines : (widget.maxLines ?? 1),
       obscureText: widget.obscureText,
       textAlign: widget.textAlign,
       enabled: widget.enabled,
       focusNode: _focusNode,
       decoration: InputDecoration(
-        constraints: widget.constraints,
         isCollapsed: widget.isCollapsed,
+        isDense: widget.isDense,
         border: inputBorder,
         enabledBorder: inputBorder,
         focusedBorder: inputBorder,
@@ -324,7 +340,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
         hintStyle: TextStyle(color: widget.hintTextColor, fontSize: widget.hintTextSize ?? widget.textSize),
         fillColor: widget.fillColor,
         filled: widget.fillColor != null,
-        contentPadding: widget.contentPadding ?? (widget.isCollapsed ? const EdgeInsets.all(6) : widget.contentPadding),
+        contentPadding: widget.contentPadding ?? (widget.isCollapsed ? const EdgeInsets.all(7) : widget.contentPadding),
         counter: widget.counter,
         counterText: widget.counterText,
         counterStyle: widget.counterStyle,
@@ -336,7 +352,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
         labelText: widget.labelText,
         labelStyle: widget.labelStyle,
         prefixIcon: widget.prefixIcon,
-        prefixIconConstraints: widget.prefixIconConstraints,
+        prefixIconConstraints: widget.prefixIconConstraints ?? const BoxConstraints(minHeight: 30),
         prefixText: widget.prefixText,
         prefixStyle: widget.prefixStyle,
         suffixIcon: Row(
@@ -353,10 +369,9 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
                     setState(() {});
                   }
                 },
-                child: Container(
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: const Icon(
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4),
+                  child: Icon(
                     Icons.cancel,
                     size: 18,
                     color: Color(0xFF999999),
@@ -368,7 +383,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
             if (widget.suffixIcon != null || (_isClear && !widget.readOnly)) SizedBox(width: widget.suffixPaddingEnd),
           ],
         ),
-        suffixIconConstraints: widget.suffixIconConstraints ?? const BoxConstraints(),
+        suffixIconConstraints: widget.suffixIconConstraints ?? const BoxConstraints(minHeight: 30),
         suffixText: widget.suffixText,
         suffixStyle: widget.suffixStyle,
       ),
