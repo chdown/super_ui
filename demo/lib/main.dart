@@ -112,7 +112,8 @@ class _MyHomePageState extends State<MyHomePage> {
             SuperTextFiled(
               isDense: true,
               fillColor: Colors.cyanAccent,
-              contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+              // contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 40),
+              heightH: 90,
               prefixIcon: SizedBox(
                 height: 20,
                 width: 20,

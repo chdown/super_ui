@@ -78,6 +78,9 @@ class SuperTextFiled extends StatefulWidget {
   /// 是否为紧凑模式
   final bool isDense;
 
+  /// [isCollapsed]或[isDense] 为 [true] 时的高度，相当于设置了[contentPadding]，因此[contentPadding]为[null]时生效
+  final double? heightH;
+
   /// 填充色
   final Color? fillColor;
 
@@ -155,6 +158,7 @@ class SuperTextFiled extends StatefulWidget {
     super.key,
     this.isCollapsed = false,
     this.isDense = false,
+    this.heightH,
     this.controller,
     this.originalText,
     this.textColor,
@@ -224,6 +228,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
   InputBorder inputBorder = InputBorder.none;
   InputBorder errorBorder = InputBorder.none;
   bool _isClear = false;
+  EdgeInsetsGeometry? contentPadding;
 
   @override
   void initState() {
@@ -243,6 +248,8 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
         _isClear = widget.isClear && _focusNode!.hasFocus && _textController!.text.isNotEmpty;
       });
     });
+    contentPadding = widget.contentPadding;
+    _getContentPadding();
   }
 
   void _keyboard() {
@@ -300,6 +307,21 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
     return inputBorder;
   }
 
+  void _getContentPadding() {
+    if (contentPadding == null) {
+      if (widget.isCollapsed || widget.isDense) {
+        if (widget.heightH != null) {
+          double vertical = (widget.heightH! / 2 - 15);
+          if (vertical >= 7) {
+            contentPadding = EdgeInsets.symmetric(horizontal: 7, vertical: vertical);
+          }
+        } else {
+          contentPadding = const EdgeInsets.symmetric(horizontal: 7, vertical: 7);
+        }
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     _keyboard();
@@ -340,7 +362,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
         hintStyle: TextStyle(color: widget.hintTextColor, fontSize: widget.hintTextSize ?? widget.textSize),
         fillColor: widget.fillColor,
         filled: widget.fillColor != null,
-        contentPadding: widget.contentPadding ?? (widget.isCollapsed ? const EdgeInsets.all(7) : widget.contentPadding),
+        contentPadding: contentPadding,
         counter: widget.counter,
         counterText: widget.counterText,
         counterStyle: widget.counterStyle,
