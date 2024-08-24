@@ -248,7 +248,6 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
         _isClear = widget.isClear && _focusNode!.hasFocus && _textController!.text.isNotEmpty;
       });
     });
-    contentPadding = widget.contentPadding;
   }
 
   void _keyboard() {
@@ -307,6 +306,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
   }
 
   void _getContentPadding() {
+    contentPadding = widget.contentPadding;
     if (contentPadding == null) {
       if (widget.isCollapsed || widget.isDense) {
         if (widget.heightH != null) {
