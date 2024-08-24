@@ -249,7 +249,6 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
       });
     });
     contentPadding = widget.contentPadding;
-    _getContentPadding();
   }
 
   void _keyboard() {
@@ -326,6 +325,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
   Widget build(BuildContext context) {
     _keyboard();
     _border();
+    _getContentPadding();
     return TextField(
       controller: _textController,
       style: TextStyle(color: widget.textColor, fontSize: widget.textSize),
