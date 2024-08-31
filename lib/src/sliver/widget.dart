@@ -159,8 +159,9 @@ class SliverToNestedScrollBoxAdapter extends SingleChildRenderObjectWidget {
 
 /// A material design app bar that integrates with a [CustomScrollView].
 /// See more [SliverPinnedPersistentHeader].
-class ExtendedSliverAppbar extends StatelessWidget {
-  const ExtendedSliverAppbar({
+class SliverAppbarExtended extends StatelessWidget {
+  const SliverAppbarExtended({
+    super.key,
     this.leading,
     this.title,
     this.actions,
@@ -241,7 +242,7 @@ class ExtendedSliverAppbar extends StatelessWidget {
     );
 
     return SliverPinnedPersistentHeader(
-      delegate: _ExtendedSliverAppbarDelegate(
+      delegate: _SliverAppbarExtendedDelegate(
         minExtentProtoType: toolbar,
         maxExtentProtoType: background ?? toolbar,
         title: title,
@@ -262,8 +263,8 @@ class ExtendedSliverAppbar extends StatelessWidget {
   }
 }
 
-class _ExtendedSliverAppbarDelegate extends SliverPinnedPersistentHeaderDelegate {
-  _ExtendedSliverAppbarDelegate({
+class _SliverAppbarExtendedDelegate extends SliverPinnedPersistentHeaderDelegate {
+  _SliverAppbarExtendedDelegate({
     required Widget minExtentProtoType,
     required Widget maxExtentProtoType,
     this.leading,
@@ -432,7 +433,7 @@ class _ExtendedSliverAppbarDelegate extends SliverPinnedPersistentHeaderDelegate
       return true;
     }
 
-    return oldDelegate is _ExtendedSliverAppbarDelegate &&
+    return oldDelegate is _SliverAppbarExtendedDelegate &&
         (oldDelegate.minExtentProtoType != minExtentProtoType ||
             oldDelegate.maxExtentProtoType != maxExtentProtoType ||
             oldDelegate.leading != leading ||
