@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
+
 /// 缺省页View需要混入的类
-mixin SuperLoadPage{
+/// 仅支持混入[Widget]
+mixin SuperLoadPage on Widget {
   /// 点击事件
   FutureOr Function(Map<String, String>? params)? onTap;
 

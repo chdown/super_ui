@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'super_load_status.dart';
+
 import 'super_load_page.dart';
+import 'super_load_status.dart';
 
 /// 缺省页
 class SuperLoad extends StatefulWidget {
@@ -15,12 +17,13 @@ class SuperLoad extends StatefulWidget {
   final Widget child;
 
   /// state缺省页构造器，默认情况下会返回定义的缺省布局，在滑片中根据实际情况进行包装
-  final Widget Function(SuperLoadPage loadWidget)? stateBuilder;
+  final Widget Function(Widget widget)? stateBuilder;
 
   /// 自定义参数，会传递到 [SuperLoadPage] 中
   final Map<String, String>? params;
 
   /// 自定义页面。自定义页面中的key会覆盖全局配置的key
+  /// key可使用[SuperLoadStatus]枚举的[name]属性
   final Map<String, SuperLoadPage>? otherPages;
 
   /// 全局配置的默认页面
@@ -94,33 +97,19 @@ class SuperLoadController {
     _state = state;
   }
 
-  void showError() {
-    _state?.showPage(SuperLoadStatus.error.name);
-  }
+  void showError() => _state?.showPage(SuperLoadStatus.error.name);
 
-  void showEmpty() {
-    _state?.showPage(SuperLoadStatus.empty.name);
-  }
+  void showEmpty() => _state?.showPage(SuperLoadStatus.empty.name);
 
-  void showNetError() {
-    _state?.showPage(SuperLoadStatus.netError.name);
-  }
+  void showNetError() => _state?.showPage(SuperLoadStatus.netError.name);
 
-  void showLoading() {
-    _state?.showPage(SuperLoadStatus.loading.name);
-  }
+  void showLoading() => _state?.showPage(SuperLoadStatus.content.name);
 
-  void showContent() {
-    _state?.showPage(SuperLoadStatus.content.name);
-  }
+  void showContent() => _state?.showPage(SuperLoadStatus.content.name);
 
-  void showOther() {
-    _state?.showPage(SuperLoadStatus.other.name);
-  }
+  void showOther() => _state?.showPage(SuperLoadStatus.other.name);
 
-  void showCustom(String customTag) {
-    _state?.showPage(customTag);
-  }
+  void showCustom(String customTag) => _state?.showPage(customTag);
 
   void dispose() {
     _state = null;
