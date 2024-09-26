@@ -14,6 +14,14 @@ mixin SuperLoadPage on Widget {
   static fast(Widget child) {
     return _LoadPage(child: child);
   }
+
+  static fastList(Widget child, {int itemCount = 10, bool shrinkWrap = false}) {
+    return ListView.builder(
+      shrinkWrap: shrinkWrap,
+      itemCount: itemCount,
+      itemBuilder: (context, index) => child,
+    );
+  }
 }
 
 class _LoadPage extends StatelessWidget with SuperLoadPage {
