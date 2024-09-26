@@ -15,13 +15,14 @@ mixin SuperLoadPage on Widget {
     return _LoadPage(child: child);
   }
 
-  static SuperLoadPage fastList(Widget child, {int itemCount = 10, bool shrinkWrap = false}) {
+  static SuperLoadPage fastList(Widget child, {Widget Function(Widget widget)? childBuilder, int itemCount = 10, bool shrinkWrap = true}) {
+    Widget widget = ListView.builder(
+      shrinkWrap: shrinkWrap,
+      itemCount: itemCount,
+      itemBuilder: (context, index) => child,
+    );
     return _LoadPage(
-      child: ListView.builder(
-        shrinkWrap: shrinkWrap,
-        itemCount: itemCount,
-        itemBuilder: (context, index) => child,
-      ),
+      child: childBuilder == null ? widget : childBuilder.call(widget),
     );
   }
 }
