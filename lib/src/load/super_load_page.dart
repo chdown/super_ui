@@ -11,15 +11,17 @@ mixin SuperLoadPage on Widget {
   /// 自定义参数
   Map<String, String>? params;
 
-  static fast(Widget child) {
+  static SuperLoadPage fast(Widget child) {
     return _LoadPage(child: child);
   }
 
-  static fastList(Widget child, {int itemCount = 10, bool shrinkWrap = false}) {
-    return ListView.builder(
-      shrinkWrap: shrinkWrap,
-      itemCount: itemCount,
-      itemBuilder: (context, index) => child,
+  static SuperLoadPage fastList(Widget child, {int itemCount = 10, bool shrinkWrap = false}) {
+    return _LoadPage(
+      child: ListView.builder(
+        shrinkWrap: shrinkWrap,
+        itemCount: itemCount,
+        itemBuilder: (context, index) => child,
+      ),
     );
   }
 }
