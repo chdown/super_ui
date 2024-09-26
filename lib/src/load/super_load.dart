@@ -78,21 +78,17 @@ class _LoadPageState extends State<SuperLoad> {
   }
 
   /// 切换页面的方法
-  void showPage(String tag, {Function(String tag)? success}) {
+  void showPage(String tag) {
     if (!mounted) return;
     if (_pageTag != tag && mounted) {
       setState(() {
         _pageTag = tag;
-        success?.call(_pageTag);
       });
     }
   }
 }
 
 class SuperLoadController {
-  /// 当前展示的页面,默认为content
-  String pageTag = SuperLoad.defaultLoadStatus.name;
-
   /// [LoadPage] sate.
   _LoadPageState? _state;
 
@@ -101,19 +97,19 @@ class SuperLoadController {
     _state = state;
   }
 
-  void showError() => _state?.showPage(SuperLoadStatus.error.name, success: (tag) => pageTag = tag);
+  void showError() => _state?.showPage(SuperLoadStatus.error.name);
 
-  void showEmpty() => _state?.showPage(SuperLoadStatus.empty.name, success: (tag) => pageTag = tag);
+  void showEmpty() => _state?.showPage(SuperLoadStatus.empty.name);
 
-  void showNetError() => _state?.showPage(SuperLoadStatus.netError.name, success: (tag) => pageTag = tag);
+  void showNetError() => _state?.showPage(SuperLoadStatus.netError.name);
 
-  void showLoading() => _state?.showPage(SuperLoadStatus.loading.name, success: (tag) => pageTag = tag);
+  void showLoading() => _state?.showPage(SuperLoadStatus.loading.name);
 
-  void showContent() => _state?.showPage(SuperLoadStatus.content.name, success: (tag) => pageTag = tag);
+  void showContent() => _state?.showPage(SuperLoadStatus.content.name);
 
-  void showOther() => _state?.showPage(SuperLoadStatus.other.name, success: (tag) => pageTag = tag);
+  void showOther() => _state?.showPage(SuperLoadStatus.other.name);
 
-  void showCustom(String customTag) => _state?.showPage(customTag, success: (tag) => pageTag = tag);
+  void showCustom(String customTag) => _state?.showPage(customTag);
 
   void dispose() {
     _state = null;
