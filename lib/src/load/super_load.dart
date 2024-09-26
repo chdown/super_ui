@@ -26,6 +26,9 @@ class SuperLoad extends StatefulWidget {
   /// key可使用[SuperLoadStatus]枚举的[name]属性
   final Map<String, SuperLoadPage>? otherPages;
 
+  /// 默认展示的tag
+  final String? defaultStateTag;
+
   /// 全局配置的默认页面
   static Map<String, SuperLoadPage>? Function() defaultPages = () => null;
 
@@ -43,6 +46,7 @@ class SuperLoad extends StatefulWidget {
     this.stateBuilder,
     this.params,
     this.otherPages,
+    this.defaultStateTag,
   });
 
   @override
@@ -51,11 +55,12 @@ class SuperLoad extends StatefulWidget {
 
 class _LoadPageState extends State<SuperLoad> {
   /// 当前展示的页面,默认为content
-  String _pageTag = SuperLoad.defaultLoadStatus.name;
+  late String _pageTag;
 
   @override
   void initState() {
     super.initState();
+    _pageTag = widget.defaultStateTag ?? SuperLoad.defaultLoadStatus.name;
     widget.controller._bind(this);
   }
 
