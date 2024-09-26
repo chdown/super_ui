@@ -10,4 +10,19 @@ mixin SuperLoadPage on Widget {
 
   /// 自定义参数
   Map<String, String>? params;
+
+  static fast(Widget child) {
+    return _LoadPage(child: child);
+  }
+}
+
+class _LoadPage extends StatelessWidget with SuperLoadPage {
+  final Widget child;
+
+  _LoadPage({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return child;
+  }
 }

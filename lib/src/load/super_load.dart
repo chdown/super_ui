@@ -103,7 +103,7 @@ class SuperLoadController {
 
   void showNetError() => _state?.showPage(SuperLoadStatus.netError.name);
 
-  void showLoading() => _state?.showPage(SuperLoadStatus.content.name);
+  void showLoading() => _state?.showPage(SuperLoadStatus.loading.name);
 
   void showContent() => _state?.showPage(SuperLoadStatus.content.name);
 
