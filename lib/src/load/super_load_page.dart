@@ -17,6 +17,7 @@ mixin SuperLoadPage on Widget {
 
   static SuperLoadPage fastList(Widget child, {Widget Function(Widget widget)? childBuilder, int itemCount = 10, bool shrinkWrap = true}) {
     Widget widget = ListView.builder(
+      padding: EdgeInsets.zero,
       shrinkWrap: shrinkWrap,
       itemCount: itemCount,
       itemBuilder: (context, index) => child,
