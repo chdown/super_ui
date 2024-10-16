@@ -310,7 +310,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
     if (contentPadding == null) {
       if (widget.isCollapsed || widget.isDense) {
         if (widget.heightH != null) {
-          double vertical = (widget.heightH! / 2 - 12);
+          double vertical = (widget.heightH! - (widget.textSize ?? 14).toDouble()) / 2;
           if (vertical >= 7) {
             contentPadding = EdgeInsets.symmetric(horizontal: 7, vertical: vertical);
           }
