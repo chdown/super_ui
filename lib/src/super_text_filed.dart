@@ -374,7 +374,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
         labelText: widget.labelText,
         labelStyle: widget.labelStyle,
         prefixIcon: widget.prefixIcon,
-        prefixIconConstraints: widget.prefixIconConstraints ?? const BoxConstraints(maxWidth: 32),
+        prefixIconConstraints: widget.prefixIconConstraints ?? const BoxConstraints(minWidth: 32),
         prefixText: widget.prefixText,
         prefixStyle: widget.prefixStyle,
         suffixIcon: Row(
@@ -405,7 +405,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
             if (widget.suffixIcon != null || (_isClear && !widget.readOnly)) SizedBox(width: widget.suffixPaddingEnd),
           ],
         ),
-        suffixIconConstraints: widget.suffixIconConstraints ?? const BoxConstraints(maxWidth: 32),
+        suffixIconConstraints: widget.suffixIconConstraints ?? const BoxConstraints(minWidth: 32),
         suffixText: widget.suffixText,
         suffixStyle: widget.suffixStyle,
       ),
