@@ -374,7 +374,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
         labelText: widget.labelText,
         labelStyle: widget.labelStyle,
         prefixIcon: widget.prefixIcon,
-        prefixIconConstraints: widget.prefixIconConstraints ?? const BoxConstraints(minHeight: 30),
+        prefixIconConstraints: widget.prefixIconConstraints ?? const BoxConstraints(maxWidth: 32, minWidth: 32),
         prefixText: widget.prefixText,
         prefixStyle: widget.prefixStyle,
         suffixIcon: Row(
@@ -384,7 +384,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
           children: [
             Visibility(
               visible: _isClear && !widget.readOnly,
-              child: InkWell(
+              child: GestureDetector(
                 onTap: () {
                   if (mounted) {
                     _textController?.clear();
@@ -394,9 +394,9 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
                 child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 4),
                   child: Icon(
-                    Icons.cancel,
+                    Icons.cancel_outlined,
                     size: 18,
-                    color: Color(0xFF999999),
+                    color: Color(0xff909399),
                   ),
                 ),
               ),
@@ -405,7 +405,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
             if (widget.suffixIcon != null || (_isClear && !widget.readOnly)) SizedBox(width: widget.suffixPaddingEnd),
           ],
         ),
-        suffixIconConstraints: widget.suffixIconConstraints ?? const BoxConstraints(minHeight: 30),
+        suffixIconConstraints: widget.suffixIconConstraints ?? const BoxConstraints(maxWidth: 32, minWidth: 32),
         suffixText: widget.suffixText,
         suffixStyle: widget.suffixStyle,
       ),
