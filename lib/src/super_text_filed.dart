@@ -326,6 +326,7 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
     _getContentPadding();
     return TextField(
       controller: _textController,
+      cursorWidth: 1,
       style: TextStyle(color: widget.textColor, fontSize: widget.textSize),
       keyboardType: textInputType,
       textInputAction: widget.textInputAction,

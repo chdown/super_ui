@@ -75,6 +75,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+            SuperTextFiled(
+              isCollapsed: true,
+              heightH: 33.6,
+              style: TextFiledStyle.fill,
+              fillColor: const Color(0xFFF4FCFC),
+              // contentPadding: EdgeInsets.only(top: 12.w, bottom: 12.w, left: 12.w, right: 12.w),
+              autofocus: false,
+              // controller: controller.textEditingController,
+              // suffixIcon: Image.asset(
+              //   Assets.imagesIvSearch,
+              //   width: 30.w,
+              //   height: 30.w,
+              // ),
+              hintText: '请输入搜索内容',
+              onSubmitted: (text) {
+                // controller.refreshController.requestRefresh(needMove: false);
+              },
+            ),
             SizedBox(height: 20),
             Container(
               height: 120,
