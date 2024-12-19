@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_ui/src/utils/ex_function.dart';
 
 /// @author : ch
 /// @date 2024-03-08 16:52:29
@@ -64,6 +65,9 @@ class SuperButton extends StatelessWidget {
   /// 按钮是否可用 默认是 [true]
   final bool enabled;
 
+  /// 按钮是否可用 默认是 [true]
+  final bool isDebounce;
+
   const SuperButton({
     super.key,
     required this.type,
@@ -87,6 +91,7 @@ class SuperButton extends StatelessWidget {
     this.borderWidth,
     this.borderColor,
     this.enabled = true,
+    this.isDebounce = true,
   });
 
   @override
@@ -96,9 +101,15 @@ class SuperButton extends StatelessWidget {
     Color? textColor = getTextColor(Theme.of(context).primaryColor);
     Widget buttonWidget = const SizedBox.shrink();
 
+    var tmpOnTap = !isDebounce
+        ? onTap
+        : () {
+            onTap();
+          }.debounce();
+
     if (type == ButtonType.filled) {
       buttonWidget = FilledButton(
-        onPressed: enabled ? onTap : null,
+        onPressed: enabled ? tmpOnTap : null,
         child: getChildren(textColor),
         style: FilledButton.styleFrom(
           backgroundColor: backgroundColor,
@@ -112,7 +123,7 @@ class SuperButton extends StatelessWidget {
       );
     } else if (type == ButtonType.outlined || type == ButtonType.outlinedPrimary) {
       buttonWidget = OutlinedButton(
-        onPressed: enabled ? onTap : null,
+        onPressed: enabled ? tmpOnTap : null,
         child: getChildren(textColor),
         style: FilledButton.styleFrom(
           backgroundColor: backgroundColor,
@@ -128,7 +139,7 @@ class SuperButton extends StatelessWidget {
       );
     } else if (type == ButtonType.text || type == ButtonType.textPrimary) {
       buttonWidget = TextButton(
-        onPressed: enabled ? onTap : null,
+        onPressed: enabled ? tmpOnTap : null,
         child: getChildren(textColor),
         style: TextButton.styleFrom(
           backgroundColor: backgroundColor,
