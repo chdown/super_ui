@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:super_ui/src/utils/ex_function.dart';
 
 enum KeyboardType { number, text, decimal, decimalNegative }
 
@@ -90,6 +91,9 @@ class SuperTextFiled extends StatefulWidget {
   /// 点击事件
   final VoidCallback? onTap;
 
+  /// 是否防抖
+  final bool isDebounce;
+
   /// 内容改变监听
   final ValueChanged<String>? onChanged;
 
@@ -164,6 +168,7 @@ class SuperTextFiled extends StatefulWidget {
     this.textColor,
     this.textSize = 14,
     this.onTap,
+    this.isDebounce = true,
     this.onChanged,
     this.onSubmitted,
     this.keyboardType,
@@ -331,7 +336,13 @@ class _SuperTextFiledState extends State<SuperTextFiled> {
       keyboardType: textInputType,
       textInputAction: widget.textInputAction,
       inputFormatters: formatter,
-      onTap: widget.onTap,
+      onTap: widget.onTap == null
+          ? null
+          : !widget.isDebounce
+              ? widget.onTap
+              : () {
+                  widget.onTap?.call();
+                }.debounce(),
       onChanged: (text) {
         setState(() {
           _isClear = widget.isClear && _focusNode!.hasFocus && _textController!.text.isNotEmpty;

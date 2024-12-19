@@ -65,7 +65,7 @@ class SuperButton extends StatelessWidget {
   /// 按钮是否可用 默认是 [true]
   final bool enabled;
 
-  /// 按钮是否可用 默认是 [true]
+  /// 是否防抖
   final bool isDebounce;
 
   const SuperButton({
